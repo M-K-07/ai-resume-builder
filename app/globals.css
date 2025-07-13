@@ -274,3 +274,9 @@ iframe {
   /* background-color: #1b1b1c;  */
   display: none;
 }
+.tab::-webkit-scrollbar{
+  visibility: hidden;
+}
+#resume-form::-webkit-scrollbar{
+  visibility: hidden;
+}

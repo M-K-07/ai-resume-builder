@@ -7,6 +7,7 @@ import Projects from "../_components/resume_components/Projects";
 import Education from "../_components/resume_components/Education";
 import Skills from "../_components/resume_components/Skills";
 import { ResumeContext } from "../../context/ResumeContext";
+import Certifications from "./resume_components/Certifications";
 
 const Resume = () => {
   const { resumeData } = useContext(ResumeContext);
@@ -34,6 +35,11 @@ const Resume = () => {
 
         {/* skills */}
         <Skills skillsData={resumeData.skills} />
+
+        {/* Certifications */}
+        {resumeData.certifications && resumeData.certifications.length > 0 && (
+          <Certifications certificationsData={resumeData.certifications} />
+        )}
       </div>
     </div>
   );

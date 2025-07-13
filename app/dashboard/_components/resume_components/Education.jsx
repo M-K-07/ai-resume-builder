@@ -5,19 +5,20 @@ const Education = ({ educationData }) => {
 
   return (
     <div>
-      <div>
+        <div className="mt-3">
         {educationData.some(
           (edu) =>
+            edu.cgpa ||
             edu.institution?.trim() ||
             edu.degree?.trim() ||
             edu.startDate?.trim() || // Corrected to use actual field names
             edu.endDate?.trim() // Corrected to use actual field names
         ) && (
           <>
-            <h2 className="font-semibold uppercase text-sm sm:text-[15px">
+            <h2 className="font-semibold uppercase text-sm sm:text-[15px]">
               Education
             </h2>
-            <hr className="border-[1px] mb-2 bg-black opacity-[0.7]" />
+            <hr className="border-[1px] mb-1 bg-black opacity-[0.7]" />
           </>
         )}
         {educationData.map((item, index) => {
@@ -33,7 +34,7 @@ const Education = ({ educationData }) => {
             if (!isStartInCurrentMonthAndYear) {
               formattedStartDate = start.toLocaleDateString("en-US", {
                 year: "numeric",
-                month: "long",
+                month: "short",
               });
             } else {
               formattedStartDate = "invalid";
@@ -46,7 +47,7 @@ const Education = ({ educationData }) => {
             const end = new Date(item.endDate);
             formattedEndDate = end.toLocaleDateString("en-US", {
               year: "numeric",
-              month: "long",
+              month: "short",
             });
           }
 
@@ -60,18 +61,23 @@ const Education = ({ educationData }) => {
           }
 
           const headerParts = [];
-          if (item.degree?.trim()) headerParts.push(item.degree.trim());
           if (item.institution?.trim())
             headerParts.push(item.institution.trim());
           if (item.location?.trim()) headerParts.push(item.location.trim());
-          if (dateDisplayString.trim())
-            headerParts.push(dateDisplayString.trim());
+          if (item.cgpa) {
+            const isOngoing =
+              new Date(item.endDate) > currentDate;
+            headerParts.push(
+              `CGPA: ${item.cgpa} / 10${isOngoing ? " (as of last semester)	" : ""}`
+            );
+          }
 
           return (
-            <div key={index} className="mb-1">
-              <h3 className="text-[13px] sm:text-[14px] font-medium capitalize">
-                {headerParts.join(" | ")}
+            <div key={index} className="mb-1 ">
+              <h3 className="text-[13px] sm:text-[14px] font-bold capitalize">
+                {item.degree.trim()} {dateDisplayString.trim() && `| ${dateDisplayString.trim()}`}
               </h3>
+              <h4 className="text-[13px] sm:text-[14px] capitalize">{headerParts.join(" | ")}</h4>
             </div>
           );
         })}

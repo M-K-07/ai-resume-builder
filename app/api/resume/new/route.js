@@ -23,6 +23,7 @@ export async function POST(request) {
                 phone: "",
                 linkedIn: "",
                 github: "",
+                leetCode: "",
             },
             workExperience: body.workExperience || [],
             education: body.education || [],

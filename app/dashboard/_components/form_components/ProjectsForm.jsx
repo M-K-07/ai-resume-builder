@@ -12,13 +12,13 @@ import { formatMarkdown } from "../../../../lib/utils";
 const ProjectsForm = ({ setActiveTab }) => {
   const { resumeData, setResumeData, submitResumeData, loading, setLoading } =
     useContext(ResumeContext);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
 
   const projects = {
     projectName: "",
     technologies: "",
     description: "",
+    demoUrl: "",
+    sourceCodeUrl: "",
   };
   const params = useParams();
 
@@ -100,42 +100,38 @@ const ProjectsForm = ({ setActiveTab }) => {
   };
   return (
     <motion.div variants={formVariants} initial="hidden" animate="visible">
-      <div className="rounded-[22px] px-4 py-3  dark:bg-zinc-900">
-        <div className="flex justify-between">
-          <h1 className="text-2xl my-3">Projects</h1>
-          <div className="flex gap-3 items-center">
+      <div className="rounded-[22px] px-2 py-2 sm:px-4 sm:py-3 dark:bg-zinc-900">
+        <div className="flex sm:flex-row sm:justify-between sm:items-center gap-2">
+          <div className="flex items-center gap-2">
             <ArrowLeft
-              className="cursor-pointer"
+              className="cursor-pointer w-5 h-5 sm:w-6 sm:h-6"
               onClick={() => setActiveTab("education")}
             />
-            <button
-              onClick={() => setActiveTab("skills")}
-              className="px-5 py-2 text-sm font-medium text-purple-400 bg-transparent border-2 border-purple-400 rounded-lg cursor-pointer hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 ease-in-out transform hover:-translate-y-px"
-            >
-              Next
-            </button>
           </div>
+          <h1 className="text-xl sm:text-2xl font-semibold my-2 sm:my-3 text-zinc-100">
+            Projects
+          </h1>
         </div>
 
         {projectList.map((item, index) => {
           return (
             <form
               key={index}
-              className="my-5 grid grid-cols-2 text-white gap-4 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out"
+              className="my-4 sm:my-5 grid grid-cols-2 text-white gap-3 sm:gap-4 rounded-2xl p-3 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out"
             >
               <div key={index} className="col-span-2">
-                <p className="my-2">Project Name: </p>
+                <p className="my-2 text-xs sm:text-sm">Project Name: </p>
                 <input
                   onChange={(e) => handleInputChange(e, index)}
                   type="text"
                   required
                   name="projectName"
                   value={item.projectName}
-                  className="w-full bg-zinc-800 p-2 rounded-lg text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
+                  className="w-full bg-zinc-800 p-2 rounded-lg text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
                 />
               </div>
               <div className="col-span-2">
-                <p className="my-2">Technologies Used: </p>
+                <p className="my-2 text-xs sm:text-sm">Technologies Used: </p>
                 <input
                   onChange={(e) => handleInputChange(e, index)}
                   type="text"
@@ -143,23 +139,23 @@ const ProjectsForm = ({ setActiveTab }) => {
                   placeholder="Nextjs, MongoDb, Java, Python"
                   value={item.technologies}
                   name="technologies"
-                  className="w-full bg-zinc-800 p-2 rounded-lg text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
+                  className="w-full bg-zinc-800 p-2 rounded-lg text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
                 />
               </div>
               <div className="my-2 col-span-2">
                 <div className="flex justify-between items-center mb-3">
-                  <p className="my-2">Description:</p>
+                  <p className="my-2 text-xs sm:text-sm">Description:</p>
                   <div>
                     <button
                       type="button"
                       onClick={(event) => {
                         aiResponse(event, index);
                       }}
-                      className="relative inline-flex h-12 overflow-hidden rounded-2xl p-[1px] hover:scale-105 ease-in duration-75 "
+                      className="relative inline-flex h-9 sm:h-12 overflow-hidden rounded-lg sm:rounded-2xl p-[1px] hover:scale-105 ease-in duration-75 text-xs sm:text-sm"
                     >
                       <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-                        <span className="inline-flex gap-2 h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg sm:rounded-2xl bg-slate-950 px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-white backdrop-blur-3xl">
+                        <span className="inline-flex gap-2 h-full w-full cursor-pointer items-center justify-center rounded-lg sm:rounded-2xl bg-slate-950 px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-white backdrop-blur-3xl">
                           {loading ? (
                             <Loader className="w-4 animate-spin" />
                           ) : (
@@ -178,13 +174,35 @@ const ProjectsForm = ({ setActiveTab }) => {
                   onChange={(e) =>
                     handleDescriptionChange(e, index, e.target.value)
                   }
-                  className="h-[320px] w-full bg-zinc-800 p-2 text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
+                  className="h-[200px] sm:h-[320px] w-full bg-zinc-800 p-2 text-[12px] sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
+                />
+              </div>
+              <div>
+                <p className="my-2 text-xs sm:text-sm">Live Demo (Optional):</p>
+                <input
+                  onChange={(e) => handleInputChange(e, index)}
+                  type="text"
+                  name="demoUrl"
+                  value={item.demoUrl || ""}
+                  className="w-full bg-zinc-800 p-2 rounded-lg text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
+                />
+              </div>
+              <div>
+                <p className="my-2 text-xs sm:text-sm">
+                  Source Code Url (Optional):{" "}
+                </p>
+                <input
+                  onChange={(e) => handleInputChange(e, index)}
+                  type="text"
+                  name="sourceCodeUrl"
+                  value={item.sourceCodeUrl || ""}
+                  className="w-full bg-zinc-800 p-2 rounded-lg text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600 transition-all duration-300 ease-in-out"
                 />
               </div>
               {projectList.length > 1 && (
                 <button
                   onClick={() => handleRemoveProjectBlock(index)}
-                  className="bg-white mt-3 font-semibold text-sm border-2 cursor-pointer text-black w-fit p-2 rounded-xl hover:text-white hover:bg-transparent hover:border-white  hover:border-2 transition duration-300 ease-in-out"
+                  className="bg-white mt-3 font-semibold text-xs sm:text-sm border-2 cursor-pointer text-black w-fit p-2 rounded-xl hover:text-white hover:bg-transparent hover:border-white  hover:border-2 transition duration-300 ease-in-out"
                 >
                   Remove
                 </button>
@@ -196,19 +214,18 @@ const ProjectsForm = ({ setActiveTab }) => {
         <div className="flex justify-between col-span-2 mb-2">
           <button
             onClick={handleAddProject}
-            className="border-2 bg-transparent p-2 rounded-xl border-white hover:bg-white transition duration-300 ease-in-out hover:text-black cursor-pointer"
+            className="border-2 bg-transparent p-2 rounded-xl border-white hover:bg-white transition duration-300 ease-in-out hover:text-black cursor-pointer text-xs sm:text-sm"
           >
             Add Project
           </button>
           <button
             onClick={handleSave}
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg shadow-md cursor-pointer hover:from-purple-700 hover:to-blue-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-px"
+            className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg shadow-md cursor-pointer hover:from-purple-700 hover:to-blue-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-px"
           >
             Save
           </button>
         </div>
       </div>
-      {/* <ProjectDialog projectList={projectList} setProjectList={setProjectList} isOpen={dialogOpen} index={activeIndex} setIsOpen={setDialogOpen} /> */}
     </motion.div>
   );
 };

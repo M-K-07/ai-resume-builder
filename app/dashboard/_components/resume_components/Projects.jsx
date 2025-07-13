@@ -1,9 +1,10 @@
+import { SquareArrowOutUpRight } from "lucide-react";
 import React from "react";
 
 const Projects = ({ projectsData }) => {
   return (
     <div>
-      <div className="mt-3">
+      <div className="mt-2">
         {projectsData?.some(
           (proj) =>
             proj.projectName?.trim() ||
@@ -11,22 +12,42 @@ const Projects = ({ projectsData }) => {
             proj.description?.trim()
         ) && (
           <>
-            <h2 className="font-semibold uppercase text-sm sm:text-[15px]">
+            <h2 className="font-semibold uppercase text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px]">
               projects
             </h2>
-            <hr className="border-[1px] mb-2 bg-black opacity-[0.7]" />{" "}
+            <hr className="border-[1px] mb-1 bg-black opacity-[0.7]" />
           </>
         )}
         {projectsData &&
           projectsData.map((item, index) => {
             return (
-              <div key={index} className="mt-2">
-                <h1 className="text-[13px] sm:text-[14px] font-semibold">
+              <div key={index}>
+                <h1 className="text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] font-semibold">
                   {item.projectName}{" "}
                   {item.technologies && ` | ${item.technologies}`}
+                  {item.demoUrl && (
+                    <a
+                      href={item.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 mx-1 hover:underline"
+                    >
+                     {'  '} Preview <SquareArrowOutUpRight className="w-3 h-3 inline-block " />
+                    </a>
+                  )}
+                  {item.sourceCodeUrl && (
+                    <a
+                      href={item.sourceCodeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 mx-1 hover:underline"
+                    >
+                     {'  '} Source Code <SquareArrowOutUpRight className="w-3 h-3 inline-block" />
+                    </a>
+                  )}
                 </h1>
                 <div
-                  className="ml-4 text-[14px] leading-[1.4] mb-1"
+                  className="ml-4 text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] leading-snug mb-2"
                   dangerouslySetInnerHTML={{
                     __html: item.description?.replace(
                       /<p>/g,

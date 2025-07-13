@@ -96,81 +96,75 @@ const ExperienceForm = ({ setActiveTab }) => {
   };
   return (
     <motion.div variants={formVariants} initial="hidden" animate="visible">
-      <div className="rounded-[22px] px-4 py-3  dark:bg-zinc-900">
-        <div className="flex justify-between">
-          <h1 className="text-2xl my-3">Experience</h1>
-          <div className="flex gap-3 items-center">
+      <div className="rounded-[22px] px-2 py-2 sm:px-4 sm:py-3 dark:bg-zinc-900">
+        <div className="flex sm:flex-row sm:justify-between sm:items-center gap-2">
+          <div className="flex items-center gap-2">
             <ArrowLeft
-              className="cursor-pointer"
-              onClick={() => setActiveTab("summary")}
+              className="cursor-pointer w-5 h-5 sm:w-6 sm:h-6"
+              onClick={() => setActiveTab('summary')}
             />
-            <button
-              onClick={() => setActiveTab("education")}
-              className="px-5 py-2 text-sm font-medium text-purple-400 bg-transparent border-2 border-purple-400 rounded-lg cursor-pointer hover:bg-purple-500 hover:text-white hover:border-purple-500 transition-all duration-300 ease-in-out transform hover:-translate-y-px"
-            >
-              Next
-            </button>
           </div>
+          <h1 className="text-xl sm:text-2xl font-semibold my-2 sm:my-3 text-zinc-100">Experience</h1>
         </div>
         {experienceList.map((item, index) => (
           <form
             action=""
             key={index}
-            className="my-5  grid grid-cols-2 text-white gap-4 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out"
+            className="my-4 sm:my-5 grid grid-cols-2 text-white gap-3 sm:gap-4 rounded-2xl p-3 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out"
           >
             <div>
-              <p className="my-2">Role: </p>
+              <p className="my-2 text-xs sm:text-sm">Role: </p>
               <input
                 type="text"
                 required
                 name="role"
                 value={item.role}
                 onChange={(e) => handleInputChange(e, index)}
-                className="w-full  bg-zinc-800 p-2 rounded-lg text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600  transition-all duration-300 ease-in-out"
+                className="w-full  bg-zinc-800 p-2 rounded-lg text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600  transition-all duration-300 ease-in-out"
               />
             </div>
             <div>
-              <p className="my-2">Company Name: </p>
+              <p className="my-2 text-xs sm:text-sm">Company Name: </p>
               <input
                 type="text"
                 required
                 name="company"
                 value={item.company}
                 onChange={(e) => handleInputChange(e, index)}
-                className="w-full p-2 rounded-lg bg-zinc-800 text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600  transition-all duration-300 ease-in-out"
+                className="w-full p-2 rounded-lg bg-zinc-800 text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600  transition-all duration-300 ease-in-out"
               />
             </div>
             <div className=" col-span-2">
-              <p className="my-2">Location:</p>
+              <p className="my-2 text-xs sm:text-sm">Location:</p>
               <input
                 required
                 name="location"
                 value={item.location}
                 onChange={(e) => handleInputChange(e, index)}
-                className="w-full p-2 rounded-lg bg-zinc-800 text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600  transition-all duration-300 ease-in-out"
+                className="w-full p-2 rounded-lg bg-zinc-800 text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border border-zinc-600  transition-all duration-300 ease-in-out"
               />
             </div>
             <div className="my-4 col-span-2">
-              <p className="">Duration:</p>
+              <p className="text-xs sm:text-sm">Duration:</p>
               <div className="flex flex-col md:flex-row gap-x-4 w-full">
                 <div className="w-full">
-                  <p className="my-2 text-sm text-gray-400">Start Date:</p>
+                  <p className="my-2 text-xs sm:text-sm text-gray-400">Start Date:</p>
                   <input
                     type="month"
                     name="startDate"
                     value={item.startDate}
                     onChange={(e) => handleInputChange(e, index)}
-                    className="w-full border rounded-lg px-3 py-2 bg-zinc-800 text-sm text-zinc-200 placeholder:text-zinc-500 border-zinc-600  transition-all duration-300 ease-in-out"
+                    className="w-full border rounded-lg px-3 py-2 bg-zinc-800 text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border-zinc-600  transition-all duration-300 ease-in-out"
                   />
                 </div>
                 <div className="w-full">
-                  <p className="my-2 text-sm text-gray-400">End Date:</p>
+                  <p className="my-2 text-xs sm:text-sm text-gray-400">End Date:</p>
                   <input
                     type="month"
                     name="endDate"
                     value={item.endDate}
                     onChange={(e) => handleInputChange(e, index)}
-                    className="w-full border rounded-lg px-3 py-2 bg-zinc-800 text-sm text-zinc-200 placeholder:text-zinc-500 border-zinc-600  transition-all duration-300 ease-in-out"
+                    className="w-full border rounded-lg px-3 py-2 bg-zinc-800 text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-500 border-zinc-600  transition-all duration-300 ease-in-out"
                   />
                 </div>
               </div>
@@ -178,18 +172,18 @@ const ExperienceForm = ({ setActiveTab }) => {
 
             <div className="my-2 col-span-2">
               <div className="flex justify-between items-center mb-3">
-                <p className="my-2">Description:</p>
+                <p className="my-2 text-xs sm:text-sm">Description:</p>
                 <div>
                   <button
                     type="button"
                     onClick={(event) => {
                       aiResponse(event, index);
                     }}
-                    className="relative inline-flex h-10 sm:h-12 overflow-hidden rounded-2xl p-[1px] hover:scale-105 ease-in duration-75 "
+                    className="relative inline-flex h-9 sm:h-12 overflow-hidden rounded-lg sm:rounded-2xl p-[1px] hover:scale-105 ease-in duration-75 text-[13px] sm:text-sm"
                   >
                     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-                      <span className="inline-flex gap-2 h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg sm:rounded-2xl bg-slate-950 px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-white backdrop-blur-3xl">
+                      <span className="inline-flex gap-2 h-full w-full cursor-pointer items-center justify-center rounded-lg sm:rounded-2xl bg-slate-950 px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-white backdrop-blur-3xl">
                         {loading ? (
                           <Loader className="w-4 animate-spin" />
                         ) : (
@@ -205,13 +199,13 @@ const ExperienceForm = ({ setActiveTab }) => {
                 value={item.description}
                 placeholder="Describe your achievements and responsibilities, then let AI make them shine! 🚀"
                 onChange={(e) => handleDescriptionChange(index, e.target.value)}
-                className="h-[320px] border-none outline-none bg-zinc-800 text-sm text-zinc-200"
+                className="h-[200px] sm:h-[320px] border-none outline-none bg-zinc-800 text-[12px] sm:text-sm text-zinc-200"
               />
             </div>
             {experienceList.length > 1 && (
               <button
                 onClick={() => handleRemoveExperienceBlock(index)}
-                className="bg-white mt-3 hover:scale-105 font-semibold text-sm border-2 cursor-pointer text-black w-fit p-2 rounded-xl hover:text-white hover:bg-transparent hover:border-white  hover:border-2 transition duration-300 ease-in-out"
+                className="bg-white mt-3 hover:scale-105 font-semibold text-xs sm:text-sm border-2 cursor-pointer text-black w-fit p-2 rounded-xl hover:text-white hover:bg-transparent hover:border-white  hover:border-2 transition duration-300 ease-in-out"
               >
                 Remove
               </button>
@@ -221,13 +215,13 @@ const ExperienceForm = ({ setActiveTab }) => {
         <div className="flex justify-between col-span-2">
           <button
             onClick={handleAddExperience}
-            className="border-2 bg-transparent p-2 rounded-xl border-white hover:bg-white transition duration-300 ease-in-out hover:text-black cursor-pointer"
+            className="border-2 bg-transparent p-2 rounded-xl border-white hover:bg-white transition duration-300 ease-in-out hover:text-black cursor-pointer text-xs sm:text-sm"
           >
             + Add experience
           </button>
           <button
             onClick={handleSave}
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg shadow-md cursor-pointer hover:from-purple-700 hover:to-blue-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-px"
+            className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg shadow-md cursor-pointer hover:from-purple-700 hover:to-blue-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-px"
           >
             Save
           </button>

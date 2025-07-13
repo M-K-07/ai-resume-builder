@@ -1,3 +1,4 @@
+import { Certificate } from 'crypto';
 import mongoose from 'mongoose';
 
 const ExperienceSchema = new mongoose.Schema({
@@ -19,6 +20,7 @@ const EducationSchema = new mongoose.Schema({
   startDate: String,
   endDate: String,
   location: String,
+  cgpa: Number,
 }, { _id: false });
 
 const SkillSchema = new mongoose.Schema({
@@ -26,15 +28,24 @@ const SkillSchema = new mongoose.Schema({
   skills: String,
 }, { _id: false });
 
+const CertificationSchema = new mongoose.Schema({
+  CertificateName: String,
+  IssuingOrganization: String,
+  CredentialUrl: String,
+}, { _id: false });
+
 const ProjectSchema = new mongoose.Schema({
   projectName: String,
   technologies: String,
   description: String,
+  demoUrl: String,
+  sourceCodeUrl: String,
   projectSummary: {
     type:String,
     default:"",
   },
 }, { _id: false })
+
 const ResumeSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   resume_name: {
@@ -47,7 +58,8 @@ const ResumeSchema = new mongoose.Schema({
     email: String,
     phone: String,
     linkedIn: String,
-    github: String
+    github: String,
+    leetCode: String,
   },
 
   summary: {
@@ -87,6 +99,10 @@ const ResumeSchema = new mongoose.Schema({
 
   skills: {
     type: [SkillSchema],
+    default: [],
+  },
+  certifications: {
+    type: [CertificationSchema],
     default: [],
   },
 }, { timestamps: true });

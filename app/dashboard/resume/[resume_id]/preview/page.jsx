@@ -13,8 +13,15 @@ const PreviewPage = () => {
   const params = useParams();
   const resumeId = params.resume_id;
 
+  const [editLoading, setEditLoading] = React.useState(false);
+  const [downloadLoading, setDownloadLoading] = React.useState(false);
+
   const handleDownload = () => {
-    window.print();
+    setDownloadLoading(true);
+    setTimeout(() => {
+      window.print();
+      setDownloadLoading(false);
+    }, 300); // short delay for UX
   };
   useEffect(() => {
     setLoading(false);
@@ -35,21 +42,30 @@ const PreviewPage = () => {
         >
           <Button
             onClick={() => {
-              setLoading(true);
+              setEditLoading(true);
               router.push(`/dashboard/resume/${resumeId}`);
-              setLoading(false);
             }}
             variant="outline"
-            className="w-full  sm:w-auto bg-transparent hover:bg-purple-600/20 border-purple-500 text-purple-400 hover:text-purple-300 font-semibold py-3 px-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-px flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full  sm:w-auto bg-transparent hover:bg-purple-600/20 border-purple-500 text-purple-400 hover:text-purple-300 font-semibold py-3 px-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-px flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={editLoading || downloadLoading}
           >
-            <Edit size={18} />
+            {editLoading ? (
+              <span className="animate-spin mr-2"><svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg></span>
+            ) : (
+              <Edit size={18} />
+            )}
             Back to Edit
           </Button>
           <Button
             onClick={handleDownload}
-            className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={downloadLoading || editLoading}
           >
-            <Download size={20} />
+            {downloadLoading ? (
+              <span className="animate-spin mr-2"><svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg></span>
+            ) : (
+              <Download size={20} />
+            )}
             Download PDF
           </Button>
         </div>

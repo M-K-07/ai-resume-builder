@@ -7,7 +7,8 @@ import {
   FileDown,     
   ScanSearch,   
 } from "lucide-react";
- export const EMPTY_RESUME_DATA = {
+ 
+export const EMPTY_RESUME_DATA = {
   personalDetails: {
     firstName: "",
     lastName: "",
@@ -15,6 +16,7 @@ import {
     phone: "",
     linkedIn: "",
     github: "",
+    leetCode:"",
   },
   summary: "",
   education: [],

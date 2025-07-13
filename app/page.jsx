@@ -2,9 +2,9 @@
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
-import { SparklesIcon, CheckCircle, Sparkles } from "lucide-react";
+import { SparklesIcon, CheckCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion"; // Import framer-motion
+import { motion } from "framer-motion";
 import { ResumeContext } from "./context/ResumeContext";
 import {
   sectionVariants,
@@ -26,17 +26,28 @@ const page = () => {
     }
   }, [user, router]);
 
-  // Animation variants for sections
-
   const currentYear = new Date().getFullYear();
 
   return (
     <>
       {/* Header Section */}
       <header className="bg-black/70 backdrop-blur-lg flex justify-between items-center px-6 md:px-10 py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-zinc-800">
-        <div className="bg-clip-text text-transparent bg-gradient-to-r flex cursor-pointer items-center gap-2 from-white to-gray-400 text-2xl font-bold">
-          SmartResume{" "}
-          <SparklesIcon className="text-gray-400 h-6 w-6 md:h-7 md:w-7" />
+        <div
+          className="flex cursor-pointer items-center select-none"
+          style={{ lineHeight: 1 }}
+        >
+          <span className="text-2xl md:text-3xl font-extrabold tracking-tight transition-all duration-200">
+            <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              R
+            </span>
+            <span className="font-black bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              EZ
+            </span>
+            <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              UME AI
+            </span>
+          </span>
+          <SparklesIcon className="text-gray-400 ml-2 flex items-center" />
         </div>
         <nav className="flex gap-3 md:gap-5 items-center">
           <button
@@ -45,77 +56,71 @@ const page = () => {
               setLoading(true);
               router.push("/dashboard");
             }}
-            className="px-4 py-2 cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-md text-sm md:text-base transition-colors duration-200"
+            className="px-4 py-2 cursor-pointer rounded-xl bg-white text-black font-semibold shadow-lg hover:bg-zinc-200 transition-all duration-300 transform hover:scale-105"
           >
             Dashboard
           </button>
         </nav>
       </header>
 
-      <motion.section
-        initial="hidden"
-        animate="visible"
-        variants={sectionVariants}
-        className="relative flex flex-col lg:flex-row items-center justify-around lg:justify-around min-h-screen px-6 md:px-20 pt-32 pb-16 bg-black text-white overflow-hidden"
-      >
-        <div className="lg:w-1/2 text-center lg:text-left lg:pr-8 xl:pr-12 z-10">
-          <motion.div
+      <section className="flex flex-col items-center justify-center min-h-[80vh] w-full px-4 md:px-0 text-white text-center">
+        <div className="inline-flex items-center px-3 py-1 mt-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-medium text-gray-300 mb-4">
+          <SparklesIcon className="h-4 w-4 mr-2 text-purple-400" />
+          <span>AI Powered Resume Builder</span>
+        </div>
+        <motion.h1
+          className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 tracking-tighter"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <span className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-normal ">
+            Welcome to <br />
+          </span>
+          <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            {" "}
+            R
+          </span>
+          <span className="font-black bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            EZ
+          </span>
+          <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            UME AI
+          </span>
+        </motion.h1>
+        <motion.p
+          className="text-zinc-400 text-lg sm:text-xl max-w-2xl mx-auto mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+        >
+          Leverage the power of AI to create professional, ATS-friendly resumes
+          that get noticed. Effortless, intelligent, and effective.{" "}
+        </motion.p>
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <motion.button
+            type="button"
+            onClick={() => router.push("/dashboard")}
+            className="relative inline-flex h-12 overflow-hidden rounded-2xl p-[1px] hover:scale-105 ease-in duration-200 text-3xl"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex justify-center lg:justify-start"
+            transition={{
+              type: "spring",
+              damping: 15,
+              stiffness: 400,
+              delay: 0.2,
+            }}
           >
-            <div className="inline-flex items-center px-3 py-1 mt-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-md font-medium text-gray-300 mb-4">
-              <Sparkles className="h-4 w-4 mr-2 text-purple-400" />
-              <span>Ai Powered Resume Builder</span>
-            </div>
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-4xl sm:text-5xl xl:text-6xl font-extrabold mb-6 leading-tight text-white"
-          >
-            Build Your{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
-              {" "}
-              Resume
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-slate-950 px-3 py-1 text-xl font-bold text-white backdrop-blur-3xl">
+              <span className="inline-flex gap-2 h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-slate-950 px-3 py-1 text-xl font-semibold text-white backdrop-blur-3xl">
+                Start Building Now
+                <ArrowRight className="w-6 h-6" />
+              </span>
             </span>
-            , Faster.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="mt-4 text-md sm:text-lg text-zinc-400 max-w-md mx-auto lg:mx-0 mb-10"
-          >
-            Leverage the power of AI to create professional, ATS-friendly
-            resumes that get noticed. Effortless, intelligent, and effective.
-          </motion.p>
-          <motion.a
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            href="/dashboard"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-r from-purple-900 to-blue-600 rounded-lg shadow-lg shadow-purple-500/30 hover:from-purple-700 hover:to-blue-700 hover:shadow-xl hover:shadow-purple-500/40  transition-all duration-300 ease-in-out transform hover:scale-105 hover:-translate-y-px"
-
-          >
-            Get Started Free
-          </motion.a>
+          </motion.button>
         </div>
-        <motion.div
-          className="lg:w-5/12 xl:w-1/2 mt-12 lg:mt-0 z-10 flex justify-center lg:justify-end"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.9, ease: "circOut" }}
-        >
-          <img
-            src="/images/image.jpg"
-            alt="AI Resume Builder in action"
-            className="rounded-xl shadow-2xl max-w-sm lg:max-w-md xl:max-w-lg border-2 border-zinc-700/50"
-          />
-        </motion.div>
-      </motion.section>
+      </section>
 
       <motion.section
         id="app-preview"
@@ -161,49 +166,75 @@ const page = () => {
         </div>
       </motion.section>
 
-      <motion.section
-        id="how-it-works"
-        className="py-24 px-6 bg-zinc-950 text-white"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
-      >
+      <section id="how-it-works" className="py-24 px-6 bg-zinc-950 text-white">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-20 text-white">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-20 text-white"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
             Resume Crafting, Simplified
-          </h2>
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {howItWorksSteps.map((step, index) => (
               <motion.div
                 key={index}
-                className="flex flex-col items-center p-8 bg-zinc-900 rounded-2xl border border-zinc-800 transition-all duration-300 hover:border-purple-500/60 hover:shadow-[0_0_30px_5px_rgba(168,85,247,0.15)]" // More subtle shadow
-                initial={{ opacity: 0, y: 30 }}
+                className="flex flex-col items-center p-8 bg-zinc-900 rounded-2xl border border-zinc-800 transition-all duration-300 hover:border-purple-500/60 hover:shadow-[0_0_30px_5px_rgba(168,85,247,0.15)]"
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{
                   opacity: 1,
                   y: 0,
                   transition: {
-                    duration: 0.6,
-                    delay: index * 0.1,
+                    duration: 0.7,
+                    delay: index * 0.12,
                     ease: "easeOut",
                   },
                 }}
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="p-3 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-full mb-6 inline-block border border-purple-500/30">
+                <motion.div
+                  className="p-3 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-full mb-6 inline-block border border-purple-500/30"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{
+                    scale: 1,
+                    opacity: 1,
+                    transition: { duration: 0.5, delay: index * 0.15 },
+                  }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   {step.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">
+                </motion.div>
+                <motion.h3
+                  className="text-xl font-semibold mb-3 text-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.5, delay: index * 0.15 },
+                  }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   {step.title}
-                </h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
+                </motion.h3>
+                <motion.p
+                  className="text-zinc-400 text-sm leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.5, delay: index * 0.18 },
+                  }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   {step.description}
-                </p>
+                </motion.p>
               </motion.div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Key Features Section */}
       <motion.section
@@ -294,88 +325,7 @@ const page = () => {
         </div>
       </motion.section>
 
-      {/* Pricing Section */}
-      <motion.section
-        id="pricing"
-        className="py-24 px-6 bg-black text-white"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={sectionVariants}
-      >
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-20 text-white">
-            Choose Your Plan
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-3xl mx-auto">
-            {pricingPlans.map((plan, index) => (
-              <motion.div
-                key={index}
-                className={`p-8 rounded-2xl flex flex-col border backdrop-blur-lg ${
-                  plan.name === "Pro"
-                    ? "bg-gradient-to-br from-purple-600/30 to-blue-600/30 border-purple-500/50 shadow-2xl shadow-purple-500/25 ring-1 ring-purple-500/60"
-                    : "bg-zinc-900/80 border-zinc-800 shadow-xl hover:border-zinc-700 transition-colors duration-300"
-                }`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: "easeOut",
-                  },
-                }}
-                viewport={{ once: true, amount: 0.4 }}
-              >
-                <h3
-                  className={`text-2xl font-semibold mb-4 ${
-                    plan.name === "Pro" ? "text-white" : "text-purple-400"
-                  }`}
-                >
-                  {plan.name}
-                </h3>
-                <p
-                  className={`text-4xl font-bold mb-8 ${
-                    plan.name === "Pro" ? "text-white" : "text-white"
-                  } tracking-tight`}
-                >
-                  {plan.price}
-                </p>
-                <ul className="text-left mb-10 flex-grow space-y-3">
-                  {plan.features.map((feature, fIndex) => (
-                    <li
-                      key={fIndex}
-                      className={`flex items-center text-sm ${
-                        plan.name === "Pro" ? "text-purple-100" : "text-zinc-300"
-                      }`}
-                    >
-                      <CheckCircle
-                        className={`h-5 w-5 mr-2.5 flex-shrink-0 ${
-                          plan.name === "Pro"
-                            ? "text-green-300"
-                            : "text-green-400"
-                        }`}
-                      />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={plan.buttonLink}
-                  className={`mt-6 block w-full px-6 py-3 rounded-lg font-medium text-center transition-all duration-300 ${
-                    plan.name === "Pro"
-                      ? "bg-white text-purple-700 hover:bg-gray-100 shadow-md hover:shadow-lg"
-                      : "bg-purple-600 text-white hover:bg-purple-500 shadow-md hover:shadow-lg"
-                  }`}
-                >
-                  {plan.buttonText}
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+
 
       {/* FAQs Section */}
       <motion.section
@@ -427,11 +377,11 @@ const page = () => {
               href="/"
               className="flex cursor-pointer items-center gap-1.5 text-md font-medium text-zinc-300 hover:text-purple-300 transition-colors"
             >
-              <SparklesIcon className="text-purple-400 h-5 w-5" /> SmartResume
+               REZSUME AI <SparklesIcon className="text-gray h-4 w-4" />
             </Link>
           </div>
           <p className="mb-2 text-zinc-600">
-            &copy; {currentYear} SmartResume. All rights reserved.
+            &copy; {currentYear} REZSUME AI. All rights reserved.
           </p>
           <p>Built with ❤️</p>
         </div>
