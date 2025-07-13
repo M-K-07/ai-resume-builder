@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Smart Resume - Professional Resume Builder & Management",
+  title: "REZUME AI - Professional Resume Builder & Management",
   description: "Elevate your career with Smart Resume. Our AI-powered platform helps you build, manage, and download professional resumes with precision and ease.",
   openGraph: {
     title: "Smart Resume",
