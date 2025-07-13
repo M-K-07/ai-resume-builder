@@ -1,4 +1,4 @@
-# Smart Resume ✨
+# REZUME AI ✨
 
 AI-powered resume builder that generates compelling summaries, experiences, and project descriptions with just a few clicks — all styled beautifully and exportable as PDF.
 
