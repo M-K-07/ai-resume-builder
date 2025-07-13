@@ -79,7 +79,7 @@ const EducationForm = ({ setActiveTab }) => {
         </div>
         {educationList.map((item, index) => (
           <div key={index}>
-            <form className="my-4 sm:my-5 grid grid-cols-2 text-white gap-3 sm:gap-4 rounded-2xl p-3 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out">
+            <form className="my-4 sm:my-5 grid grid-cols-1 md:grid-cols-2 text-white gap-3 sm:gap-4 rounded-2xl p-3 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out w-full">
               <div>
                 <p className="my-2 text-xs sm:text-sm">Degree: </p>
                 <input

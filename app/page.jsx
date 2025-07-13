@@ -69,7 +69,7 @@ const page = () => {
           <span>AI Powered Resume Builder</span>
         </div>
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 tracking-tighter"
+          className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 tracking-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}

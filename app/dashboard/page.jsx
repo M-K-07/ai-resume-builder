@@ -64,22 +64,22 @@ const Page = () => {
           <Sparkles className="h-4 w-4 mr-2 text-purple-400" />
           <span>Ai Powered Resume Builder</span>
         </div>
-        <h1 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+        <h1 className="text-3xl  md:text-5xl font-bold mb-6 text-white">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
             Hello {user?.firstName}
           </span>
           👋
         </h1>
-        <p className="text-lg mx-auto justify-center text-gray-300 mb-8">
+        <p className="text-base md:text-lg max-w-3xl mx-auto text-gray-300 mb-8">
           Craft a brand new resume with the help of our AI-powered assistant,{" "}
-          <br />
+          <br className="hidden md:block" />
           or easily update and polish your existing ones to perfection.
         </p>
         <Button
           onClick={() => setDialogOpen(true)}
-          className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 rounded-full text-lg  shadow-lg shadow-purple-900/20 transition-all duration-400 cursor-pointer hover:shadow-xl hover:shadow-purple-900/30 p-7 hover:translate-y-[-5px]"
+          className="w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 rounded-full text-base sm:text-lg shadow-lg shadow-purple-900/20 transition-all duration-400 cursor-pointer hover:shadow-xl hover:shadow-purple-900/30 p-5 sm:p-5 lg:p-7 hover:translate-y-[-5px]"
         >
-          Create New Resume <Plus className="h-6 w-6" />
+          Create New Resume <Plus className="h-5 w-5 sm:h-6 sm:w-6" />
         </Button>
       </div>
       {resumes.length != 0 ? (

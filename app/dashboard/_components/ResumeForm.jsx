@@ -60,9 +60,9 @@ const ResumeForm = () => {
   return (
     <div
       id="resume-form"
-      className="lg:w-[50%] md:w-full overflow-auto lg:border-r lg:border-zinc-700"
+      className="lg:w-[50%] md:w-full  overflow-auto lg:border-r lg:border-zinc-700"
     >
-      <div className="pt-5 px-5">
+      <div className="pt-5 lg:px-5 ">
         <div className="mb-4 flex flex-row justify-between gap-2 items-center w-full">
           <button
             onClick={() => {
@@ -94,7 +94,7 @@ const ResumeForm = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="tab overflow-x-scroll flex flex-row justify-between  w-full p-2 pt-3 items-center h-auto">
+          <TabsList className="tab overflow-x-scroll flex flex-row justify-between gap-2 w-full p-2 pt-3 items-center h-auto">
             <TabsTrigger
               value="personal"
               className="flex flex-col items-center justify-center py-1 px-1 text-xs md:text-sm cursor-pointer"
