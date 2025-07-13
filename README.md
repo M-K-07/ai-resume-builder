@@ -2,7 +2,7 @@
 
 AI-powered resume builder that generates compelling summaries, experiences, and project descriptions with just a few clicks — all styled beautifully and exportable as PDF.
 
-🚀 Live Preview-(https://rezume-ai.vercel.app)  
+🚀 [Live Preview](https://rezume-ai.vercel.app)  
 🔗 [GitHub Repo](https://github.com/M-K-07/ai-resume-builder) 
 
 ---
