@@ -71,7 +71,7 @@ const CertificationForm = () => {
             />
           </div>
           <h1 className="text-xl sm:text-2xl font-semibold my-2 sm:my-3 text-zinc-100">
-            Skills
+            Certifications
           </h1>
         </div>
 
