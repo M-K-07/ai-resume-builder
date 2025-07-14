@@ -19,7 +19,7 @@ const ResumeProvider = ({ children }) => {
         },
       });
       const updatedResume = await res.json();
-      console.log("Resume updated:", updatedResume);
+
       setResumeData(updatedResume);
       setLoading(false);
     } catch (error) {
@@ -30,7 +30,6 @@ const ResumeProvider = ({ children }) => {
   useEffect(() => {
     if (params.resume_id) {
       getResumeData(params.resume_id);
-      console.log(resumeData);
     }
   }, [params.resume_id]);
 
