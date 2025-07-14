@@ -50,7 +50,7 @@ const ResumeProvider = ({ children }) => {
       const updatedResume = await res.json();
       setResumeData(updatedResume);
       setLoading(false);
-      console.log("Resume updated:", updatedResume);
+      
     } catch (error) {
       console.error("Error updating resume:", error);
     }
