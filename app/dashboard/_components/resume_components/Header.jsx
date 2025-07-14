@@ -7,7 +7,7 @@ const Header = ({ headerData }) => {
         <h1 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] m-0 p-0 font-bold uppercase leading-tight">
           {headerData.firstName || " "} {headerData.lastName || " "}
         </h1>
-        <p className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] text-gray-600 mt-1 leading-snug">
+        <p className="text-[10px] sm:text-[14px] text-gray-600 mt-1 leading-snug">
           {headerData.phone}
 
           {headerData.email && (
