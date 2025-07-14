@@ -74,10 +74,10 @@ const Education = ({ educationData }) => {
 
           return (
             <div key={index} className="mb-1 ">
-              <h3 className="text-[13px] sm:text-[14px] font-bold capitalize">
+              <h3 className="text-[11px] sm:text-[14px] font-bold capitalize">
                 {item.degree.trim()} {dateDisplayString.trim() && `| ${dateDisplayString.trim()}`}
               </h3>
-              <h4 className="text-[13px] sm:text-[14px] capitalize">{headerParts.join(" | ")}</h4>
+              <h4 className="text-[11px] sm:text-[14px] capitalize">{headerParts.join(" | ")}</h4>
             </div>
           );
         })}

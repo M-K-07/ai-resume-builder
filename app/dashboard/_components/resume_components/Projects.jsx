@@ -12,7 +12,7 @@ const Projects = ({ projectsData }) => {
             proj.description?.trim()
         ) && (
           <>
-            <h2 className="font-semibold uppercase text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px]">
+            <h2 className="font-semibold uppercase text-[11px] sm:text-[14px]">
               projects
             </h2>
             <hr className="border-[1px] mb-1 bg-black opacity-[0.7]" />
@@ -22,7 +22,7 @@ const Projects = ({ projectsData }) => {
           projectsData.map((item, index) => {
             return (
               <div key={index}>
-                <h1 className="text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] font-semibold">
+                <h1 className="text-[11px] sm:text-[14px] font-semibold">
                   {item.projectName}{" "}
                   {item.technologies && ` | ${item.technologies}`}
                   {item.demoUrl && (
@@ -47,7 +47,7 @@ const Projects = ({ projectsData }) => {
                   )}
                 </h1>
                 <div
-                  className="ml-4 text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] leading-snug mb-2"
+                  className="ml-4 text-[11px] sm:text-[14px] leading-snug mb-2"
                   dangerouslySetInnerHTML={{
                     __html: item.description?.replace(
                       /<p>/g,

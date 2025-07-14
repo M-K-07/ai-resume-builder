@@ -78,11 +78,11 @@ const Experience = ({ experienceData }) => {
 
           return (
             <div key={index} className="mb-1">
-              <h3 className="text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] font-semibold capitalize">
+              <h3 className="text-[11px] sm:text-[14px] font-semibold capitalize">
                 {headerParts.join(" | ")}
               </h3>
               <div
-                className="ml-4 text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] leading-snug"
+                className="ml-4 text-[11px] sm:text-[14px] leading-snug"
                 dangerouslySetInnerHTML={{
                   __html: item.description?.replace(
                     /<p>/g,
