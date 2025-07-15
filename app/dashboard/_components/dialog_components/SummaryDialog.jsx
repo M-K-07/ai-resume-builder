@@ -27,22 +27,30 @@ import { Loader, Sparkles } from "lucide-react";
 import { ResumeContext } from "../../../context/ResumeContext.jsx";
 
 export function SummaryDialog({ isOpen, setIsOpen }) {
-  const { setResumeData, resumeData,loading,setLoading } =
+  const { setResumeData, resumeData, loading, setLoading } =
     useContext(ResumeContext);
 
   const submitForm = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const prompt = PROMPTS.SUMMARY.replace("{JobTitle}", resumeData.jobTitle)
-      .replace("{Experience}", resumeData.yearsOfExperience)
-      .replace("{Skills}", resumeData.technologiesKnown)
-      .replace("{JobDescription}", resumeData.jobDescription);
-    const response = await GenAi(prompt);
+      const prompt = PROMPTS.SUMMARY.replace("{JobTitle}", resumeData.jobTitle)
+        .replace("{Experience}", resumeData.yearsOfExperience)
+        .replace("{Skills}", resumeData.technologiesKnown)
+        .replace("{JobDescription}", resumeData.jobDescription);
+      const response = await GenAi(prompt);
 
-    setResumeData((prevData) => ({ ...prevData, summary: response }));
-    setLoading(false);
-    setIsOpen(false);
+      setResumeData((prevData) => ({ ...prevData, summary: response }));
+      setLoading(false);
+      setIsOpen(false);
+    } catch (error) {
+      setLoading(false);
+
+      toast.error("API Limit Exceeded 🥲. Please try again later.", {
+        style: { background: "#ef4444", color: "#fff" },
+      });
+    }
   };
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -136,7 +144,11 @@ export function SummaryDialog({ isOpen, setIsOpen }) {
             >
               <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
               <span className="inline-flex gap-2 h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-                {loading ? <Loader className="w-4 animate-spin" /> : <Sparkles className="w-4" />}
+                {loading ? (
+                  <Loader className="w-4 animate-spin" />
+                ) : (
+                  <Sparkles className="w-4" />
+                )}
                 {loading ? "Generating..." : "Generate"}
               </span>
             </button>

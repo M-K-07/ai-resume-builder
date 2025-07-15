@@ -67,23 +67,30 @@ const ProjectsForm = ({ setActiveTab }) => {
 
   const aiResponse = async (e, index) => {
     e.preventDefault();
-    setLoading(true);
-    const userProjectDescription = projectList[index].description;
-    const jobDescription = resumeData.jobDescription;
+    try {
+      setLoading(true);
+      const userProjectDescription = projectList[index].description;
+      const jobDescription = resumeData.jobDescription;
 
-    const prompt = PROMPTS.PROJECT.replace(
-      "{TechnologiesUsed}",
-      resumeData.projects[index].technologies
-    )
-      .replace("{jobDescription}", jobDescription)
-      .replace("{UserProvidedProjectDescription}", userProjectDescription);
+      const prompt = PROMPTS.PROJECT.replace(
+        "{TechnologiesUsed}",
+        resumeData.projects[index].technologies
+      )
+        .replace("{jobDescription}", jobDescription)
+        .replace("{UserProvidedProjectDescription}", userProjectDescription);
 
-    const response = await GenAi(prompt);
-    const formattedResponse = await formatMarkdown(response);
-    const updated = [...projectList]; // Create a new array for state update
-    updated[index].description = formattedResponse;
-    setProjectList(updated);
-    setLoading(false);
+      const response = await GenAi(prompt);
+      const formattedResponse = await formatMarkdown(response);
+      const updated = [...projectList]; // Create a new array for state update
+      updated[index].description = formattedResponse;
+      setProjectList(updated);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      toast.error("API Limit Exceeded 🥲. Please try again later.", {
+        style: { background: "#ef4444", color: "#fff" },
+      });
+    }
   };
 
   useEffect(() => {

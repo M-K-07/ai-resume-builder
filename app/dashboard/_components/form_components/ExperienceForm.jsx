@@ -41,7 +41,9 @@ const ExperienceForm = ({ setActiveTab }) => {
   const handleSave = (e) => {
     e.preventDefault();
     submitResumeData(params.resume_id);
-    toast.success("Experience details saved successfully!", { style: { background: '#22c55e', color: '#fff' } });
+    toast.success("Experience details saved successfully!", {
+      style: { background: "#22c55e", color: "#fff" },
+    });
     setActiveTab("education");
   };
   const handleDescriptionChange = (idx, value) => {
@@ -65,21 +67,28 @@ const ExperienceForm = ({ setActiveTab }) => {
 
   const aiResponse = async (e, index) => {
     e.preventDefault();
-    setLoading(true);
-    const userDescription = experienceList[index].description;
-    const jobDescription = resumeData.jobDescription;
+    try {
+      setLoading(true);
+      const userDescription = experienceList[index].description;
+      const jobDescription = resumeData.jobDescription;
 
-    const prompt = PROMPTS.EXPERIENCE.replace(
-      "{UserProvidedDescription}",
-      userDescription
-    ).replace("{JobDescription}", jobDescription);
+      const prompt = PROMPTS.EXPERIENCE.replace(
+        "{UserProvidedDescription}",
+        userDescription
+      ).replace("{JobDescription}", jobDescription);
 
-    const response = await GenAi(prompt);
-    const formattedResponse = await formatMarkdown(response);
-    const updated = [...experienceList]; // Create a new array for state update
-    updated[index].description = formattedResponse;
-    setExperienceList(updated);
-    setLoading(false);
+      const response = await GenAi(prompt);
+      const formattedResponse = await formatMarkdown(response);
+      const updated = [...experienceList]; // Create a new array for state update
+      updated[index].description = formattedResponse;
+      setExperienceList(updated);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      toast.error("API Limit Exceeded 🥲. Please try again later.", {
+        style: { background: "#ef4444", color: "#fff" },
+      });
+    }
   };
 
   useEffect(() => {
@@ -104,10 +113,12 @@ const ExperienceForm = ({ setActiveTab }) => {
           <div className="flex items-center gap-2">
             <ArrowLeft
               className="cursor-pointer w-5 h-5 sm:w-6 sm:h-6"
-              onClick={() => setActiveTab('summary')}
+              onClick={() => setActiveTab("summary")}
             />
           </div>
-          <h1 className="text-xl sm:text-2xl font-semibold my-2 sm:my-3 text-zinc-100">Experience</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold my-2 sm:my-3 text-zinc-100">
+            Experience
+          </h1>
         </div>
         {experienceList.map((item, index) => (
           <form
@@ -151,7 +162,9 @@ const ExperienceForm = ({ setActiveTab }) => {
               <p className="text-xs sm:text-sm">Duration:</p>
               <div className="flex flex-col md:flex-row gap-x-4 w-full">
                 <div className="w-full">
-                  <p className="my-2 text-xs sm:text-sm text-gray-400">Start Date:</p>
+                  <p className="my-2 text-xs sm:text-sm text-gray-400">
+                    Start Date:
+                  </p>
                   <input
                     type="month"
                     name="startDate"
@@ -161,7 +174,9 @@ const ExperienceForm = ({ setActiveTab }) => {
                   />
                 </div>
                 <div className="w-full">
-                  <p className="my-2 text-xs sm:text-sm text-gray-400">End Date:</p>
+                  <p className="my-2 text-xs sm:text-sm text-gray-400">
+                    End Date:
+                  </p>
                   <input
                     type="month"
                     name="endDate"
@@ -230,7 +245,6 @@ const ExperienceForm = ({ setActiveTab }) => {
           </button>
         </div>
       </div>
-   
     </motion.div>
   );
 };

@@ -21,9 +21,6 @@ const Navbar = () => {
       </a>
       <div className="flex gap-4 items-center justify-center">
         <UserButton />
-        <SignOutButton>
-          <LogOut className="text-zinc-300 hover:text-red-500 transition-colors duration-300 cursor-pointer" size={20}/>
-        </SignOutButton>
       </div>
     </div>
   );
