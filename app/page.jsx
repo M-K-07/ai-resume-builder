@@ -63,7 +63,7 @@ const page = () => {
         </nav>
       </header>
 
-      <section className="flex flex-col items-center justify-center min-h-[80vh] w-full px-4 md:px-0 text-white text-center">
+      <section className="flex bg-zinc-950 flex-col items-center justify-center min-h-[80vh] w-full px-4 md:px-0 text-white text-center">
         <div className="inline-flex items-center px-3 py-1 mt-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-medium text-gray-300 mb-4">
           <SparklesIcon className="h-4 w-4 mr-2 text-purple-400" />
           <span>AI Powered Resume Builder</span>
@@ -377,13 +377,13 @@ const page = () => {
               href="/"
               className="flex cursor-pointer items-center gap-1.5 text-md font-medium text-zinc-300 hover:text-purple-300 transition-colors"
             >
-               REZSUME AI <SparklesIcon className="text-gray h-4 w-4" />
+               REZSUME AI <SparklesIcon className="text-gray-400 h-4 w-4" />
             </Link>
           </div>
           <p className="mb-2 text-zinc-600">
             &copy; {currentYear} REZSUME AI. All rights reserved.
           </p>
-          <p>Built with ❤️</p>
+          <p>Built By MK ✨</p>
         </div>
       </footer>
     </>
