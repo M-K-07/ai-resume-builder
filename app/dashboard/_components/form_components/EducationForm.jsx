@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 import { ArrowLeft } from "lucide-react";
 import { ResumeContext } from "../../../context/ResumeContext";
 import { useParams } from "next/navigation";
@@ -37,12 +38,14 @@ const EducationForm = ({ setActiveTab }) => {
       const updated = [...educationList];
       updated.splice(index, 1);
       setEducationList(updated);
+      toast.success("Education block removed successfully!");
     }
   };
 
   const handleSave = (e) => {
     e.preventDefault();
     submitResumeData(params.resume_id);
+    toast.success("Education details saved successfully!", { style: { background: '#22c55e', color: '#fff' } });
     setActiveTab("projects");
   };
   useEffect(() => {

@@ -5,6 +5,7 @@ import { dark } from "@clerk/themes";
 import { ThemeProvider } from "./dashboard/_components/theme-provider";
 import { PrimeReactProvider } from "primereact/api";
 import { ResumeProvider } from "./context/ResumeContext";
+import { Toaster } from "./dashboard/_components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
   return (
     <ResumeProvider>
       <ClerkProvider appearance={{ baseTheme: dark }}>
+        <Toaster />
         <PrimeReactProvider>
           <html lang="en" suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

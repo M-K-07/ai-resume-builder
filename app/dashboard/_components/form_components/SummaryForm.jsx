@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { ResumeContext } from "../../../context/ResumeContext";
 import { useParams } from "next/navigation";
 import { SummaryDialog } from "../dialog_components/SummaryDialog";
+import { toast } from "sonner";
   import { motion } from "framer-motion";
 
 const SummaryForm = ({ setActiveTab }) => {
@@ -19,6 +20,7 @@ const SummaryForm = ({ setActiveTab }) => {
   const handleSave = (e) => {
     e.preventDefault();
     submitResumeData(params.resume_id);
+    toast.success("Summary details saved successfully!", { style: { background: '#22c55e', color: '#fff' } });
     setActiveTab("experience")
   };
 

@@ -1,5 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 import { ArrowLeft, Loader, Sparkles } from "lucide-react";
 import Editor from "react-simple-wysiwyg";
 import { ResumeContext } from "../../../context/ResumeContext";
@@ -40,6 +41,7 @@ const ExperienceForm = ({ setActiveTab }) => {
   const handleSave = (e) => {
     e.preventDefault();
     submitResumeData(params.resume_id);
+    toast.success("Experience details saved successfully!", { style: { background: '#22c55e', color: '#fff' } });
     setActiveTab("education");
   };
   const handleDescriptionChange = (idx, value) => {
@@ -54,6 +56,7 @@ const ExperienceForm = ({ setActiveTab }) => {
       const updated = [...experienceList];
       updated.splice(index, 1);
       setExperienceList(updated);
+      toast.success("Experience block removed successfully!");
     }
   };
   const handleAddExperience = () => {

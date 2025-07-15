@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { PROMPTS } from "../../../../lib/prompts";
 import { GenAi } from "../../../../lib/GeminiAI";
 import { formatMarkdown } from "../../../../lib/utils";
+import { toast } from "sonner";
 
 const ProjectsForm = ({ setActiveTab }) => {
   const { resumeData, setResumeData, submitResumeData, loading, setLoading } =
@@ -33,6 +34,9 @@ const ProjectsForm = ({ setActiveTab }) => {
   const handleSave = (e) => {
     e.preventDefault();
     submitResumeData(params.resume_id);
+    toast.success("Projects details saved successfully!", {
+      style: { background: "#22c55e", color: "#fff" },
+    });
     setActiveTab("skills");
   };
   const handleInputChange = (e, index) => {
@@ -40,7 +44,6 @@ const ProjectsForm = ({ setActiveTab }) => {
     const updatedList = [...projectList];
     updatedList[index][name] = value;
     setProjectList(updatedList);
-    console.log(resumeData);
   };
 
   const handleAddProject = () => {
@@ -52,6 +55,7 @@ const ProjectsForm = ({ setActiveTab }) => {
       const updated = [...projectList];
       updated.splice(index, 1);
       setProjectList(updated);
+      toast.success("Project block removed successfully!");
     }
   };
 
@@ -59,7 +63,6 @@ const ProjectsForm = ({ setActiveTab }) => {
     const updated = [...projectList];
     updated[idx].description = value;
     setProjectList(updated);
-    console.log(resumeData);
   };
 
   const aiResponse = async (e, index) => {

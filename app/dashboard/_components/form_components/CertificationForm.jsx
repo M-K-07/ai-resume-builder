@@ -4,6 +4,7 @@ import React, { useState, useContext, useEffect, use } from "react";
 import { ResumeContext } from "../../../context/ResumeContext";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 const CertificationForm = () => {
   const { resumeData, setResumeData, submitResumeData, loading, setLoading } =
@@ -45,12 +46,14 @@ const CertificationForm = () => {
       const updated = [...certificationsList];
       updated.splice(index, 1);
       setCertificationsList(updated);
+      toast.success("Certification block removed successfully!");
     }
   };
 
   const handleSave = (e) => {
     e.preventDefault();
     submitResumeData(params.resume_id);
+    toast.success("Certification details saved successfully!", { style: { background: '#22c55e', color: '#fff' } });
   }
 
   useEffect(() => { 

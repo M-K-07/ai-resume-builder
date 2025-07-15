@@ -1,6 +1,7 @@
 "use client";
 import { ArrowLeft, Eye } from "lucide-react";
 import React, { useState, useContext, useEffect } from "react";
+import { toast } from "sonner";
 import { ResumeContext } from "../../../context/ResumeContext";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -13,6 +14,7 @@ const SkillsForm = ({ setActiveTab }) => {
   const handleSave = (e) => {
     e.preventDefault();
     submitResumeData(params.resume_id);
+    toast.success("Skills details saved successfully!", { style: { background: '#22c55e', color: '#fff' } });
     setActiveTab("certifications");
   };
 
@@ -46,6 +48,7 @@ const SkillsForm = ({ setActiveTab }) => {
       const updated = [...skillsList];
       updated.splice(index, 1);
       setSkillsList(updated);
+      toast.success("Skill block removed successfully!");
     }
   };
 
@@ -60,7 +63,6 @@ const SkillsForm = ({ setActiveTab }) => {
       ...prevData,
       skills: skillsList,
     }));
-    console.log(resumeData);
   }, [skillsList]);
 
   return (
