@@ -21,6 +21,7 @@ AI-powered resume builder that generates compelling summaries, experiences, and 
 ## 🧠 Built With
 
 - [Next.js 14](https://nextjs.org/) (App Router)
+- [MongoDB](https://www.mongodb.com/)
 - [React.js](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Clerk.dev](https://clerk.dev/) – Auth
