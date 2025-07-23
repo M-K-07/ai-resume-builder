@@ -23,7 +23,7 @@ export const metadata = {
   openGraph: {
     title: "Smart Resume",
     description: "Build, manage, and perfect your professional resume with Smart Resume's AI-driven tools for career advancement.",
-    url: "https://your-domain.com",
+    url: "https://rezume-ai.vercel.app",
     siteName: "Resume Builder",
     images: [
       {
@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
               <ThemeProvider
                 attribute="class"
-                defaultTheme="system"
+                defaultTheme="dark"
                 enableSystem
                 disableTransitionOnChange
               >
