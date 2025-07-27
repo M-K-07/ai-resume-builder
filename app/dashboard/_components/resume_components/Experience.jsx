@@ -13,10 +13,9 @@ const Experience = ({ experienceData }) => {
             exp.role?.trim()
         ) && (
           <>
-            <h2 className="font-semibold uppercase text-[11px] sm:text-[14px] ">
+            <h2 className="font-semibold uppercase border-b-1 border-gray-500 mb-1 text-[11px] sm:text-[14px] ">
               Experience
             </h2>
-            <hr className="border-[1px] mb-1 bg-black opacity-[0.7]" />
           </>
         )}
         {experienceData.map((item, index) => {
