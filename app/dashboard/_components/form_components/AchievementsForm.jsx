@@ -102,11 +102,6 @@ const AchievementsForm = ({setActiveTab}) => {
     }));
   }, [achievementList]);
 
-  useEffect(() => {
-    console.log(resumeData);
-    console.log(formatMarkdown(`Okay, since the user-provided description is simply "hello," it's impossible to refine or optimize it in a meaningful way. I can only assume it's a placeholder. Therefore, I'll create a hypothetical achievement based on a common scenario where "hello" might be significant: **Making a positive first impression that leads to a successful interaction.** I will then craft a refined description and related resume bullet points. **Hypothetical Scenario:** A customer service representative consistently receives positive feedback for their initial greeting and ability to quickly build rapport with customers. **Refined Achievement Description (for achievement title "Hello"):** "Mastered the art of first impressions, consistently delivering exceptional initial greetings that fostered immediate rapport with customers. Achieved a 20% higher customer satisfaction rating (CSAT) on initial interaction questions compared to the team average, leading to a 15% increase in successful issue resolution on first contact. Demonstrated active listening skills and empathy to understand customer needs quickly, setting a positive tone for the entire service experience." **Resume Bullet Points:** * **Enhanced Customer Satisfaction:** Improved initial interaction CSAT scores by 20% by crafting empathetic and effective customer greetings, setting a positive tone for subsequent interactions. * **Boosted First-Call Resolution:** Contributed to a 15% increase in first-call resolution rates by quickly building rapport and understanding customer needs during the initial greeting.`));
-  }, [resumeData]);
-
   const formVariants = {
     hidden: { opacity: 0, x: 20 },
     visible: {
@@ -140,6 +135,7 @@ const AchievementsForm = ({setActiveTab}) => {
                 <p className="my-2 text-xs sm:text-sm">Achievement Title: </p>
                 <input
                   onChange={(e) => handleInputChange(index, e)}
+                  placeholder="E.g. NCC Coordinator, Volunteer of the Year"
                   type="text"
                   required
                   name="title"
@@ -174,8 +170,8 @@ const AchievementsForm = ({setActiveTab}) => {
                 </div>
 
                 <Editor
-                  value={String(item.description)}
-                  placeholder="Craft your project story here, then let AI polish it to perfection! ✨"
+                  value={item.description}
+                  placeholder="Achieved something awesome? Type it out ✨"
                   onChange={(e) =>
                     handleDescriptionChange(e, index, e.target.value)
                   }
