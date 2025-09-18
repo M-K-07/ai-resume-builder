@@ -45,6 +45,11 @@ const ProjectSchema = new mongoose.Schema({
   },
 }, { _id: false })
 
+const AchievementsSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+}, { _id: false });
+
 const ResumeSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   resume_name: {
@@ -104,6 +109,10 @@ const ResumeSchema = new mongoose.Schema({
     type: [CertificationSchema],
     default: [],
   },
+  achievements: {
+    type: [AchievementsSchema],
+    default: [],
+  }
 }, { timestamps: true });
 
 export default mongoose.models.Resume || mongoose.model('Resume', ResumeSchema);

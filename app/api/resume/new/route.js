@@ -16,7 +16,7 @@ export async function POST(request) {
             userId: body.userId,
             resume_name: body.resume_name,
             summary: body.summary || "",
-            personalDetails: body.personalDetails || {
+            personalDetails: {
                 firstName: "",
                 lastName: "",
                 email: "",
@@ -25,13 +25,14 @@ export async function POST(request) {
                 github: "",
                 leetCode: "",
             },
-            workExperience: body.workExperience || [],
-            education: body.education || [],
-            skills: body.skills || [],
-            technologiesKnown: body.technologiesKnown,
-            jobTitle: body.jobTitle,
-            yearsOfExperience: body.yearsOfExperience,
-            jobDescription: body.jobDescription
+            workExperience: [],
+            education: [],
+            skills: [],
+            technologiesKnown: "",
+            jobTitle: "",
+            yearsOfExperience: "",
+            jobDescription: "",
+            achievements: []
         });
 
         return NextResponse.json(newResume, { status: 201 });

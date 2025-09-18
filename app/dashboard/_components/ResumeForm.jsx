@@ -11,6 +11,7 @@ import {
   Star,
   Eye,
   Award,
+  Trophy,
 } from "lucide-react"; // Added icons for tabs
 import {
   Tabs,
@@ -28,6 +29,8 @@ import SkillsForm from "../_components/form_components/SkillsForm";
 import CertificationForm from "../_components/form_components/CertificationForm";
 import { useParams, useRouter } from "next/navigation";
 import { ResumeContext } from "../../context/ResumeContext";
+import Achievements from "./resume_components/Achievements";
+import AchievementsForm from "./form_components/AchievementsForm";
 
 const ResumeForm = () => {
   const router = useRouter();
@@ -55,6 +58,7 @@ const ResumeForm = () => {
     "projects",
     "skills",
     "certifications",
+    "achievements",
   ];
 
   return (
@@ -137,6 +141,13 @@ const ResumeForm = () => {
             >
               <Award size={16} className="mb-1" /> Certifications
             </TabsTrigger>
+            <TabsTrigger
+              value="achievements"
+              className="flex flex-col items-center justify-center py-1 px-1 text-xs md:text-sm cursor-pointer"
+            >
+              <Trophy size={16} className="mb-1" /> Achievements
+            </TabsTrigger>
+            
           </TabsList>
 
           <TabsContent value="personal">
@@ -183,6 +194,13 @@ const ResumeForm = () => {
           </TabsContent>
           <TabsContent value="certifications">
             <CertificationForm
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              tabOrder={tabOrder}
+            />
+          </TabsContent>
+          <TabsContent value="achievements">
+            <AchievementsForm
               activeTab={activeTab}
               setActiveTab={setActiveTab}
               tabOrder={tabOrder}

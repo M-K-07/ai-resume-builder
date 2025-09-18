@@ -23,6 +23,7 @@ export const EMPTY_RESUME_DATA = {
   workExperience: [],
   skills: [],
   projects: [],
+  achievements: [],
   jobDescription: "",  
   jobTitle: "",        
   yearsOfExperience: "",
