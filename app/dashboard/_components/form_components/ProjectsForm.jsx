@@ -50,7 +50,8 @@ const ProjectsForm = ({ setActiveTab }) => {
     setProjectList([...projectList, projects]);
   };
 
-  const handleRemoveProjectBlock = (index) => {
+  const handleRemoveProjectBlock = (index,e) => {
+    e.preventDefault();
     if (projectList.length > 1) {
       const updated = [...projectList];
       updated.splice(index, 1);
@@ -211,7 +212,7 @@ const ProjectsForm = ({ setActiveTab }) => {
               </div>
               {projectList.length > 1 && (
                 <button
-                  onClick={() => handleRemoveProjectBlock(index)}
+                  onClick={(e) => handleRemoveProjectBlock(index,e)}
                   className="bg-white mt-3 font-semibold text-xs sm:text-sm border-2 cursor-pointer text-black w-fit p-2 rounded-xl hover:text-white hover:bg-transparent hover:border-white  hover:border-2 transition duration-300 ease-in-out"
                 >
                   Remove
