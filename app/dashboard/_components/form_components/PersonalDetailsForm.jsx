@@ -52,7 +52,7 @@ const PersonalDetailsForm = ({ setActiveTab }) => {
           </h1>
         </div>
 
-        <div className="relative my-4 sm:my-5">
+        <div className="relative mt-1 mb-4 sm:mt-1 sm:mb-5">
           <div className="absolute -inset-0.5  rounded-2xl blur opacity-70"></div>
           <form
             action=""
@@ -133,7 +133,7 @@ const PersonalDetailsForm = ({ setActiveTab }) => {
               <button
                 type="submit"
                 onClick={handleSave}
-                className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg shadow-md cursor-pointer hover:from-purple-700 hover:to-blue-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-px"
+                className="inline-flex items-center justify-center px-5 py-2 sm:px-8 sm:py-3 text-xs sm:text-sm font-bold text-black bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.15)] cursor-pointer hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out disabled:opacity-50"
               >
                 Save
               </button>

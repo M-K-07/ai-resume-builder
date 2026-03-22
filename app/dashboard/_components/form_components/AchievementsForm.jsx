@@ -129,7 +129,7 @@ const AchievementsForm = ({setActiveTab}) => {
           return (
             <form
               key={index}
-              className="my-4 sm:my-5 grid grid-cols-2 text-white gap-3 sm:gap-4 rounded-2xl p-3 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out"
+              className="mt-1 mb-4 sm:mt-1 sm:mb-5 grid grid-cols-2 text-white gap-3 sm:gap-4 rounded-2xl p-3 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black ring-1 ring-zinc-700/50 hover:ring-zinc-500/80 transition duration-300 ease-in-out"
             >
               <div key={index} className="col-span-2">
                 <p className="my-2 text-xs sm:text-sm">Achievement Title: </p>
@@ -199,7 +199,7 @@ const AchievementsForm = ({setActiveTab}) => {
           </button>
           <button
             onClick={handleSave}
-            className="inline-flex items-center justify-center px-4 py-1.5 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg shadow-md cursor-pointer hover:from-purple-700 hover:to-blue-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-px"
+            className="inline-flex items-center justify-center px-5 py-2 sm:px-8 sm:py-3 text-xs sm:text-sm font-bold text-black bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.15)] cursor-pointer hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out disabled:opacity-50"
           >
             Save
           </button>

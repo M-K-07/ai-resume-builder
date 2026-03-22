@@ -35,6 +35,7 @@ const PreviewPage = () => {
     <div
       className="min-h-screen  text-white print:p-0 print:m-0 print:min-h-0 pt-8 pb-10 px-4 sm:px-6 lg:px-8"
     >
+      {editLoading && <Loading />}
       <div className="max-w-5xl print:m-0 mx-auto">
         <div
         id='no-print'
@@ -46,19 +47,19 @@ const PreviewPage = () => {
               router.push(`/dashboard/resume/${resumeId}`);
             }}
             variant="outline"
-            className="w-full  sm:w-auto bg-transparent hover:bg-purple-600/20 border-purple-500 text-purple-400 hover:text-purple-300 font-semibold py-3 px-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-px flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full cursor-pointer sm:w-auto group inline-flex items-center justify-center gap-2 rounded-xl px-6 py-2.5 text-sm font-semibold text-zinc-100 bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-white/20 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
             disabled={editLoading || downloadLoading}
           >
             {editLoading ? (
-              <span className="animate-spin mr-2"><svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg></span>
+              <span className="animate-spin mr-2"><svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg></span>
             ) : (
-              <Edit size={18} />
+              <Edit size={16} className="text-zinc-400 group-hover:text-white transition-colors" />
             )}
             Back to Edit
           </Button>
           <Button
             onClick={handleDownload}
-            className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full cursor-pointer sm:w-auto group inline-flex items-center justify-center gap-2 rounded-xl px-8 py-2.5 text-sm font-bold text-black bg-white transition-all duration-300 hover:bg-zinc-200 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.15)] disabled:opacity-60 disabled:cursor-not-allowed"
             disabled={downloadLoading || editLoading}
           >
             {downloadLoading ? (

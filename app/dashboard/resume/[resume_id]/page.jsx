@@ -22,7 +22,7 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <div className='flex flex-col lg:flex-row mt-[72px] mx-auto bg-zinc-900 w-full justify-between h-[calc(100vh-72px)] gap-6 p-4 md:p-6'>
+    <div className='flex flex-col lg:flex-row mt-0 mx-auto bg-zinc-900 w-full justify-between h-[calc(100vh-120px)] gap-6 p-4 md:p-6'>
       <ResumeForm/>
       <div className="hidden lg:flex lg:w-12 xl:w-[50vw] print:min-h-auto"> 
         <Resume/>
