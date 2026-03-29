@@ -67,7 +67,6 @@ const page = () => {
           <div className="hidden md:flex gap-6 mr-4 text-sm font-medium text-zinc-400">
             <button onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors cursor-pointer">Features</button>
             <button onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors cursor-pointer">How it Works</button>
-            <button onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors cursor-pointer">Pricing</button>
             <button onClick={() => document.getElementById("faqs")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors cursor-pointer">FAQs</button>
           </div>
           <button
@@ -311,71 +310,6 @@ const page = () => {
                     <p className="text-sm text-zinc-500">{testimonial.title}</p>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="relative z-10 py-32 px-6 bg-black/40 border-t border-white/5">
-        <div className="container mx-auto max-w-5xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 tracking-tight">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-zinc-400 text-lg mb-20 max-w-2xl mx-auto">
-            Choose the perfect plan to accelerate your career journey.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {pricingPlans.map((plan, index) => (
-              <motion.div
-                key={index}
-                className={`flex flex-col p-8 rounded-[2rem] border backdrop-blur-xl transition-all duration-300 ${
-                  index === 1 
-                    ? 'bg-gradient-to-b from-purple-900/20 to-black border-purple-500/30 shadow-[0_0_40px_rgba(168,85,247,0.15)] scale-105 z-10' 
-                    : 'bg-white/5 border-white/10 hover:border-white/20'
-                }`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-              >
-                {index === 1 && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-cyan-400 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
-                    Most Popular
-                  </div>
-                )}
-                <div className="mb-8 mt-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-5xl font-black text-white">{plan.price}</span>
-                    {plan.price !== "$0" && <span className="text-zinc-500 font-medium tracking-tight">/mo</span>}
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <ul className="space-y-5 text-left mb-10">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-4 text-zinc-300 font-medium">
-                        <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
-                          <svg className="w-3.5 h-3.5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <button
-                  onClick={() => router.push(plan.buttonLink)}
-                  className={`w-full py-4 rounded-xl font-bold transition-all duration-300 ${
-                    index === 1
-                      ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:scale-[1.02] active:scale-95'
-                      : 'bg-white/10 text-white hover:bg-white/20 active:scale-95 border border-white/5'
-                  }`}
-                >
-                  {plan.buttonText}
-                </button>
               </motion.div>
             ))}
           </div>
