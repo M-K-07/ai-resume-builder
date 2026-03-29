@@ -9,6 +9,7 @@ import { Button } from "./_components/ui/button";
 import { Card } from "./_components/ui/card";
 import { DeleteDialog } from "./_components/dialog_components/DeleteDialog";
 import Loading from "./_components/Loading";
+import { Skeleton } from "./_components/ui/skeleton";
 import { motion } from "framer-motion";
 
 const Page = () => {
@@ -18,6 +19,7 @@ const Page = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [resumeToDeleteId, setResumeToDeleteId] = useState(null);
   const [resumes, setResumes] = useState([]);
+  const [isFetchingResumes, setIsFetchingResumes] = useState(true);
   const { loading, setLoading } = useContext(ResumeContext);
 
   const viewResumeForm = (id) => {
@@ -38,20 +40,25 @@ const Page = () => {
 
   const fetchResumes = async () => {
     try {
+      setIsFetchingResumes(true);
       const res = await fetch(`/api/resume?userId=${user.id}`);
-      if (!res) return;
+      if (!res) {
+        setIsFetchingResumes(false);
+        return;
+      }
       const data = await res.json();
       setResumes(data);
     } catch (err) {
       console.error("Error fetching resumes:", err);
+    } finally {
+      setIsFetchingResumes(false);
     }
   };
 
   useEffect(() => {
     if (user) {
-      setLoading(true);
+      setLoading(false); // Disable global loader on the dashboard root
       fetchResumes();
-      setLoading(false);
     }
   }, [user]);
 
@@ -84,7 +91,33 @@ const Page = () => {
         </Button>
       </motion.div>
 
-      {resumes.length !== 0 ? (
+      {isFetchingResumes ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-3xl font-bold text-white tracking-tighter">
+              My Resumes
+            </h2>
+            <div className="h-px bg-white/10 flex-grow ml-4 rounded-full"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((item) => (
+              <Card key={item} className="h-[280px] bg-[#09090b] backdrop-blur-lg border border-white/10 rounded-[1.25rem] overflow-hidden flex flex-col p-6 shadow-lg">
+                <Skeleton className="h-7 w-3/4 mb-4 bg-white/10" />
+                <Skeleton className="h-4 w-1/2 mb-auto bg-white/10" />
+                <div className="flex gap-3 mt-auto pt-4 border-t border-white/5">
+                  <Skeleton className="h-11 flex-1 rounded-xl bg-white/10" />
+                  <Skeleton className="h-11 w-[52px] flex-none rounded-xl bg-white/10" />
+                </div>
+              </Card>
+            ))}
+          </div>
+        </motion.div>
+      ) : resumes.length !== 0 ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

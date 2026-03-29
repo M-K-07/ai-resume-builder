@@ -12,6 +12,7 @@ const ResumeProvider = ({ children }) => {
   const getResumeData = async (id) => {
     try {
       setLoading(true);
+      setResumeData(EMPTY_RESUME_DATA); // Prevents data bleeding from previous resume
       const res = await fetch(`/api/resume/${id}`, {
         method: "GET",
         headers: {
