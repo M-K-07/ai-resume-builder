@@ -5,7 +5,7 @@ import Resume from "../../../../models/Resume";
 export async function PUT(req, { params }) {
     try {
         await dbConnect();
-        const {id}  = params;
+        const { id } = await params;
         const body = await req.json();
        
         const updatedResume = await Resume.findByIdAndUpdate(
@@ -24,12 +24,13 @@ export async function PUT(req, { params }) {
         return NextResponse.json({ error: "Failed to update resume" }, { status: 500 });
     }
 }
+
 export async function GET(req, { params }) {
     try {
         await dbConnect();
-        const { id } = params
+        const { id } = await params;
        
-        const resume=await Resume.findById(id)
+        const resume = await Resume.findById(id);
 
         if (!resume) {
             return NextResponse.json({ error: "Resume not found" }, { status: 404 });
@@ -37,17 +38,17 @@ export async function GET(req, { params }) {
 
         return NextResponse.json(resume, { status: 200 });
     } catch (error) {
-        console.error("Error updating resume:", error);
-        return NextResponse.json({ error: "Failed to update resume" }, { status: 500 });
+        console.error("Error fetching resume:", error);
+        return NextResponse.json({ error: "Failed to fetch resume" }, { status: 500 });
     }
 }
 
 export async function DELETE(req, { params }) {
     try {
         await dbConnect();
-        const { id } = params
+        const { id } = await params;
        
-        const resume=await Resume.findByIdAndDelete(id) 
+        const resume = await Resume.findByIdAndDelete(id);
         if (!resume) {
             return NextResponse.json({ error: "Resume not found" }, { status: 404 });
         }
@@ -57,6 +58,3 @@ export async function DELETE(req, { params }) {
         return NextResponse.json({ error: "Failed to delete resume" }, { status: 500 });
     }
 }
-
-
-

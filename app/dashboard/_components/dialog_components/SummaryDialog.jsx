@@ -27,7 +27,7 @@ import { Loader, Sparkles } from "lucide-react";
 import { ResumeContext } from "../../../context/ResumeContext.jsx";
 
 export function SummaryDialog({ isOpen, setIsOpen }) {
-  const { setResumeData, resumeData, loading, setLoading } =
+  const { setResumeData, resumeData, loading, setLoading, charCount } =
     useContext(ResumeContext);
 
   const submitForm = async (e) => {
@@ -35,10 +35,13 @@ export function SummaryDialog({ isOpen, setIsOpen }) {
     try {
       setLoading(true);
 
+      const budget = charCount?.sectionBudgets?.summary ?? 320;
+
       const prompt = PROMPTS.SUMMARY.replace("{JobTitle}", resumeData.jobTitle)
         .replace("{Experience}", resumeData.yearsOfExperience)
         .replace("{Skills}", resumeData.technologiesKnown)
-        .replace("{JobDescription}", resumeData.jobDescription);
+        .replace("{JobDescription}", resumeData.jobDescription)
+        .replace("{CharBudget}", budget);
       const response = await GenAi(prompt);
 
       setResumeData((prevData) => ({ ...prevData, summary: response }));

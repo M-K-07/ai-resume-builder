@@ -11,7 +11,7 @@ import { formatMarkdown } from "../../../../lib/utils";
 import { toast } from "sonner";
 
 const ProjectsForm = ({ setActiveTab }) => {
-  const { resumeData, setResumeData, submitResumeData, loading, setLoading } =
+  const { resumeData, setResumeData, submitResumeData, loading, setLoading, charCount } =
     useContext(ResumeContext);
 
   const projects = {
@@ -73,12 +73,15 @@ const ProjectsForm = ({ setActiveTab }) => {
       const userProjectDescription = projectList[index].description;
       const jobDescription = resumeData.jobDescription;
 
+      const budget = charCount?.sectionBudgets?.perProject ?? 380;
+
       const prompt = PROMPTS.PROJECT.replace(
         "{TechnologiesUsed}",
         resumeData.projects[index].technologies
       )
         .replace("{jobDescription}", jobDescription)
-        .replace("{UserProvidedProjectDescription}", userProjectDescription);
+        .replace("{UserProvidedProjectDescription}", userProjectDescription)
+        .replace("{CharBudget}", budget);
 
       const response = await GenAi(prompt);
       const formattedResponse = await formatMarkdown(response);

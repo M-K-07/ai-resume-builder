@@ -11,7 +11,7 @@ import { GenAi } from "../../../../lib/GeminiAI";
 import { formatMarkdown } from "../../../../lib/utils";
 
 const ExperienceForm = ({ setActiveTab }) => {
-  const { resumeData, setResumeData, submitResumeData, loading, setLoading } =
+  const { resumeData, setResumeData, submitResumeData, loading, setLoading, charCount } =
     useContext(ResumeContext);
 
   const params = useParams();
@@ -72,10 +72,14 @@ const ExperienceForm = ({ setActiveTab }) => {
       const userDescription = experienceList[index].description;
       const jobDescription = resumeData.jobDescription;
 
+      const budget = charCount?.sectionBudgets?.perExperience ?? 340;
+
       const prompt = PROMPTS.EXPERIENCE.replace(
         "{UserProvidedDescription}",
         userDescription
-      ).replace("{JobDescription}", jobDescription);
+      )
+        .replace("{JobDescription}", jobDescription)
+        .replace("{CharBudget}", budget);
 
       const response = await GenAi(prompt);
       const formattedResponse = await formatMarkdown(response);

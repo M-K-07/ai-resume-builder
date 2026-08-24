@@ -81,12 +81,21 @@ const Experience = ({ experienceData }) => {
                 {headerParts.join(" | ")}
               </h3>
               <div
-                className="ml-4 text-[11px] sm:text-[14px] leading-snug"
+                className="text-[11px] sm:text-[14px] leading-snug"
                 dangerouslySetInnerHTML={{
-                  __html: item.description?.replace(
-                    /<p>/g,
-                    '<p style="margin:0;padding:0;line-height:1.4;">'
-                  ),
+                  __html: item.description
+                    ?.replace(
+                      /<p>/g,
+                      '<p style="margin:0;padding:0;line-height:1.5;">'
+                    )
+                    .replace(
+                      /<ul>/g,
+                      '<ul style="margin:0;padding-left:1.25rem;list-style-type:disc;">'
+                    )
+                    .replace(
+                      /<li>/g,
+                      '<li style="margin:0;padding:0;line-height:1.5;">'
+                    ),
                 }}
               />
             </div>

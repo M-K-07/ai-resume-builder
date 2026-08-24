@@ -50,12 +50,13 @@ export default function RootLayout({ children }) {
       <ClerkProvider appearance={{ baseTheme: dark }}>
         <Toaster />
         <PrimeReactProvider>
-          <html lang="en" suppressHydrationWarning>
+          <html lang="en" className="dark" suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
               <ThemeProvider
                 attribute="class"
                 defaultTheme="dark"
-                enableSystem
+                enableSystem={false}
+                forcedTheme="dark"
                 disableTransitionOnChange
               >
                 <main>{children}</main>

@@ -1,13 +1,17 @@
 "use client";
 import { EMPTY_RESUME_DATA } from "../../constants";
 import { useParams } from "next/navigation";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
+import { calcResumeCharCount } from "../../lib/resumeCharCount";
 
 const ResumeContext = createContext();
 const ResumeProvider = ({ children }) => {
   const params = useParams();
   const [resumeData, setResumeData] = useState(EMPTY_RESUME_DATA);
   const [loading, setLoading] = useState(true);
+
+  // Derived: recomputed on every resumeData change, zero extra re-renders
+  const charCount = useMemo(() => calcResumeCharCount(resumeData), [resumeData]);
 
   const getResumeData = async (id) => {
     try {
@@ -65,6 +69,7 @@ const ResumeProvider = ({ children }) => {
         submitResumeData,
         loading,
         setLoading,
+        charCount,
       }}
     >
       {children}

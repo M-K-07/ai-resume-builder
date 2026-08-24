@@ -10,7 +10,7 @@ import { GenAi } from "../../../../lib/GeminiAI";
 import { formatMarkdown } from "../../../../lib/utils";
 import { toast } from "sonner";
 const AchievementsForm = ({setActiveTab}) => {
-  const { resumeData, setResumeData, submitResumeData, loading, setLoading } =
+  const { resumeData, setResumeData, submitResumeData, loading, setLoading, charCount } =
     useContext(ResumeContext);
 
   const params = useParams();
@@ -66,21 +66,18 @@ const AchievementsForm = ({setActiveTab}) => {
       setLoading(true);
       const userAchievementDescription = achievementList[index].description;
       const achievementTitle = achievementList[index].title;
+
+      const budget = charCount?.sectionBudgets?.perAchievement ?? 130;
+
       const prompt = PROMPTS.ACHIEVEMENTS.replace(
         "{AchievementTitle}",
         achievementTitle
-      ).replace(
-        "{UserProvidedAchievementDescription}",
-        userAchievementDescription
-      );
-      console.log(typeof PROMPTS.ACHIEVEMENTS);
-      console.log(userAchievementDescription)
-      console.log(prompt)
+      )
+        .replace("{UserProvidedAchievementDescription}", userAchievementDescription)
+        .replace("{CharBudget}", budget);
 
       const response = await GenAi(prompt);
       const formatted = await formatMarkdown(response);
-      console.log("AI Response:", response);
-      console.log("Formatted Response:", formatted);
       const list = [...achievementList];
       list[index].description = formatted;
 
