@@ -1,4 +1,5 @@
 import React from "react";
+import { formatUrl } from "../../../../lib/utils";
 
 const Certifications = ({ certificationsData }) => {
   return (
@@ -31,7 +32,7 @@ const Certifications = ({ certificationsData }) => {
                   {" "}
                   -{" "}
                   <a
-                    href={item.CredentialUrl}
+                    href={formatUrl(item.CredentialUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"

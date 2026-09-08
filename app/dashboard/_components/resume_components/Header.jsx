@@ -1,4 +1,5 @@
 import React from "react";
+import { formatUrl } from "../../../../lib/utils";
 
 const Header = ({ headerData }) => {
   return (
@@ -26,7 +27,7 @@ const Header = ({ headerData }) => {
             <>
               {" | "}
               <a
-                href={headerData.linkedIn}
+                href={formatUrl(headerData.linkedIn)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 underline hover:text-blue-800"
@@ -40,7 +41,7 @@ const Header = ({ headerData }) => {
             <>
               {" | "}
               <a
-                href={headerData.github}
+                href={formatUrl(headerData.github)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 underline hover:text-blue-800"
@@ -54,7 +55,7 @@ const Header = ({ headerData }) => {
             <>
               {" | "}
               <a
-                href={headerData.leetCode}
+                href={formatUrl(headerData.leetCode)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 underline hover:text-blue-800"

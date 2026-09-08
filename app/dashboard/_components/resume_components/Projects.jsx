@@ -1,5 +1,6 @@
 import { SquareArrowOutUpRight } from "lucide-react";
 import React from "react";
+import { formatUrl } from "../../../../lib/utils";
 
 const Projects = ({ projectsData }) => {
   return (
@@ -26,7 +27,7 @@ const Projects = ({ projectsData }) => {
                   {item.technologies && ` | ${item.technologies}`}
                   {item.demoUrl && (
                     <a
-                      href={item.demoUrl}
+                      href={formatUrl(item.demoUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 mx-1 hover:underline"
@@ -36,12 +37,12 @@ const Projects = ({ projectsData }) => {
                   )}
                   {item.sourceCodeUrl && (
                     <a
-                      href={item.sourceCodeUrl}
+                      href={formatUrl(item.sourceCodeUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 mx-1 hover:underline"
                     >
-                     {'  '} Source Code <SquareArrowOutUpRight className="w-3 h-3 inline-block" />
+                     {'  '} Source Code <SquareArrowOutUpRight className="w-3 h-3 inline-block " />
                     </a>
                   )}
                 </h1>
